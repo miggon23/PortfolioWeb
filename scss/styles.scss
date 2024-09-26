@@ -34,8 +34,8 @@
 */
 
 // Define base and accent colors
-$base-color: #3498db;
-$base-color-hover: darken($base-color, 10%);
+$base-color: #a634db;
+$base-color-hover: darken($base-color, 22%);
 
 // Define background colors
 $background: #fff;
@@ -350,7 +350,7 @@ footer {
     height: 100vh;
     min-height: 500px;
     max-height: 1080px;
-    background: url(../images/lead-bg.jpg);
+    background: url(../images/controller.jpg);
     background-size: cover;
     padding: 15px;
     overflow: hidden;
@@ -973,6 +973,12 @@ footer {
         padding: 30px 15px;
         top: auto;
         transform: none;
+    }
+
+    .project-video {
+        position: relative;
+        padding: 30px 15px;
+    
     }
 
     .project-info {

@@ -97,4 +97,27 @@
         });
     });
 
+    function handleVideoVisibility() {
+        const video = document.querySelector('.project-video video');
+        
+        if (video) { // Asegurarse de que existe el video antes de añadir el observador
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play(); // Reproducir el video si está visible
+                    } else {
+                        video.pause(); // Pausar el video si no está visible
+                    }
+                });
+            }, {
+                threshold: 0.5 // Definir qué porcentaje del video debe ser visible para activar
+            });
+            
+            observer.observe(video);
+        }
+    }
+
+    // Llamar a la función para manejar la visibilidad del video
+    handleVideoVisibility();
+
 })(jQuery);
