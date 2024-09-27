@@ -659,6 +659,23 @@ footer {
     padding: 20px;
 }
 
+.tilt-container {
+    width: 700px;
+    perspective: 1000px; /* Esto añade un efecto 3D */
+}
+
+.tilt-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease-out, box-shadow 0.1s ease-out;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+
+    &:hover img {
+        box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.5); // Sombra inicial al hacer hover
+    }
+}
+
 .project-info {
     position: relative;
     margin: 20px;
@@ -674,6 +691,7 @@ footer {
         color: $text;
         margin: 0 0 15px 0;
         font-size: 0.9em;
+        list-style-type:none;
     }    
 }
 
