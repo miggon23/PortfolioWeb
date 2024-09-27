@@ -97,4 +97,63 @@
         });
     });
 
+    function handleVideoVisibility() {
+        const video = document.querySelector('.project-video video');
+        
+        if (video) { // Asegurarse de que existe el video antes de añadir el observador
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play(); // Reproducir el video si está visible
+                    } else {
+                        video.pause(); // Pausar el video si no está visible
+                    }
+                });
+            }, {
+                threshold: 0.5 // Definir qué porcentaje del video debe ser visible para activar
+            });
+            
+            observer.observe(video);
+        }
+    }
+
+    function handleImageTilt(){
+        const tiltContainers = document.querySelectorAll('.tilt-container'); // Selecciona todos los contenedores
+
+        tiltContainers.forEach(tiltContainer => { // Itera sobre cada contenedor
+            const image = tiltContainer.querySelector('img');
+
+            // Leer el color de sombra desde el atributo de datos
+            const shadowColor = tiltContainer.getAttribute('data-shadow-color');
+
+            tiltContainer.addEventListener('mousemove', (e) => {
+                const rect = tiltContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const midX = rect.width / 2;
+                const midY = rect.height / 2;
+
+                const rotateX = ((y - midY) / midY) * 10;
+                const rotateY = ((midX - x) / midX) * 10;
+
+                // Sombra dinámica
+                const shadowX = (midX - x) / 20;
+                const shadowY = (midY - y) / 20;
+
+                // Aplica la transformación y la sombra
+                image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                image.style.boxShadow = `${shadowX}px ${shadowY}px 12px ${shadowColor}`; // Usa el color de sombra del atributo
+            });
+
+            tiltContainer.addEventListener('mouseleave', () => {
+                image.style.transform = 'rotateX(0) rotateY(0)';
+                image.style.boxShadow = `2px 4px 12px ${shadowColor}`; // Mantén el mismo color al salir
+            });
+    });}
+
+    // Llamar a la función para manejar la visibilidad del video
+    handleVideoVisibility();
+
+    handleImageTilt();
 })(jQuery);

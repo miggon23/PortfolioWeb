@@ -34,8 +34,8 @@
 */
 
 // Define base and accent colors
-$base-color: #3498db;
-$base-color-hover: darken($base-color, 10%);
+$base-color: #a634db;
+$base-color-hover: darken($base-color, 22%);
 
 // Define background colors
 $background: #fff;
@@ -350,7 +350,7 @@ footer {
     height: 100vh;
     min-height: 500px;
     max-height: 1080px;
-    background: url(../images/lead-bg.jpg);
+    background: url(../images/controller.jpg);
     background-size: cover;
     padding: 15px;
     overflow: hidden;
@@ -618,10 +618,6 @@ footer {
         color: $text;
         font-size: 0.9em;
     }
-
-    ul {
-        padding: 0 0 0 15px;
-    }
 }
 
 /*
@@ -648,18 +644,41 @@ footer {
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
+
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna (texto arriba, imagen abajo) */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Centra el texto en el contenedor */
 }
 
 .project-image {
-    float: left;
+    position: relative;
+    margin-top: auto;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+.tilt-container {
+    width: 700px;
+    perspective: 1000px; /* Esto añade un efecto 3D */
+}
+
+.tilt-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease-out, box-shadow 0.1s ease-out;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+
+    &:hover img {
+        box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.5); // Sombra inicial al hacer hover
+    }
 }
 
 .project-info {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 300px;
-    padding: 15px;
+    position: relative;
+    margin: 20px;
 
     h3 {
         font-size: 1.5em;
@@ -668,11 +687,12 @@ footer {
         margin: 0 0 15px 0;
     }
 
-    p {
+    p, ul {
         color: $text;
         margin: 0 0 15px 0;
         font-size: 0.9em;
-    }
+        list-style-type:none;
+    }    
 }
 
 .no-image {
@@ -697,6 +717,7 @@ footer {
 #skills {
     padding: 50px 15px;
     text-align: center;
+    
 
     h2 {
         color: $heading;
@@ -719,7 +740,13 @@ footer {
         list-style: none;
         cursor: default;
         font-size: 1.2em;
+        @include transition();
+
+        &:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
     }
+
 }
 
 /*
@@ -917,7 +944,7 @@ footer {
         height: 100%;
     }
 
-    #mobile-menu-open, #mobile-menu-close {
+    #mobe-menu-open, #mobile-menu-close {
         display: block;
     }
 
@@ -959,7 +986,17 @@ footer {
     }
 
     .project-image {
-        display: none;
+        display: auto;
+        position: relative;
+        padding: 30px 15px;
+        top: auto;
+        transform: none;
+    }
+
+    .project-video {
+        position: relative;
+        padding: 30px 15px;
+    
     }
 
     .project-info {
